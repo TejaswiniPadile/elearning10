@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		/* Add the following styles to display sidebar over navbar */
+		.sidebar {
+			height: 100%;
+			width: 250px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background: rgb(2, 0, 36);
+			background: linear-gradient(176deg, rgba(2, 0, 36, 1) 0%, rgba(121, 9, 40, 1) 14%, rgba(228, 255, 0, 1) 100%);
+			padding-top: 20px;
+			z-index: 1000;
+			/* Set a high z-index to ensure it appears above other elements */
+		}
+
+		.sidebar a {
+			padding: 15px;
+			text-decoration: none;
+			font-size: 18px;
+			color: white;
+			display: block;
+		}
+
+		.sidebar h2 {
+			color: #818181;
+			text-align: center;
+		}
+
+		.sidebar a:hover {
+			background-color: #575757;
+		}
+
+		.navbar {
+			position: fixed;
+			width: 100%;
+			top: 0;
+			background: rgb(2, 0, 36);
+			background: linear-gradient(109deg, rgba(2, 0, 36, 1) 0%, rgba(121, 54, 9, 1) 14%, rgba(145, 16, 69, 1) 100%);
+			padding: 20px;
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		.navbar-content {
+			color: white;
+			margin: 0;
+		}
+
+		.content {
+			margin-left: 250px;
+			padding: 66px 16px 16px;
+			/* Adjust padding to avoid content being hidden behind the navbar */
+		}
+
+		/* Adjust the z-index for navbar to make sure it's below the sidebar */
+		.navbar {
+			z-index: 900;
+		}
+
+
+		.cards {
+			padding-top: 10px;
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+		}
+
+		.card {
+			background-color: #f1f1f1;
+			padding: 20px;
+			margin: 10px;
+			width: calc(33.33% - 20px);
+			text-align: center;
+		}
+
+		.data-view {
+			margin-top: 20px;
+		}
+
+		.login-btn,
+		.logout-btn {
+			background-color: #2BC406;
+			color: #fff;
+			padding: 8px 16px;
+			border-radius: 5px;
+			text-decoration: none;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		.logout-btn {
+			margin-right: 25px;
+		}
+
+		.login-btn:hover {
+			background-color: #555;
+			/* Change color on hover */
+		}
+
+		.logout-btn:hover {
+			background-color: rgb(255, 0, 0);
+		}
+
+		/* Add the following styles for the data view */
+		.data-view {
+			margin-top: 20px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+
+		th,
+		td {
+			border: 1px solid #ddd;
+			padding: 8px;
+			text-align: center;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f9f9f9;
+			/* Alternate row color */
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+		.delete-btn {
+			background-color: rgb(255, 0, 0);
+			color: #fff;
+			padding: 8px 18px;
+			border-radius: 5px;
+			text-decoration: none;
+			border: none;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		.delete-btn:hover {
+			background-color: rgb(0, 255, 0);
+		}
+
+		.update-btn {
+			background-color: rgb(0, 128, 255);
+			color: #fff;
+			padding: 8px 16px;
+			border-radius: 5px;
+			text-decoration: none;
+			border: none;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		.update-btn:hover {
+			background-color: rgb(0, 255, 0);
+		}
+
+		.view-btn {
+			background-color: rgb(0, 255, 0);
+			color: #fff;
+			padding: 8px 16px;
+			border-radius: 5px;
+			text-decoration: none;
+			border: none;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		.view-btn:hover {
+			background-color: rgb(128, 128, 128);
+		}
+
+		.action {
+			display: flex;
+			justify-content: center;
+		}
+
+		.action-form {
+			margin-left: 5px;
+			/* Adjust the margin as needed */
+		}
+
+		/* Basic styles */
+		.signup-section {
+			padding: 50px 0;
+			background-color: #f8f8f8;
+		}
+
+		.signup_container {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.right-side {
+			flex: 1;
+			margin-top: 50px;
+			max-width: 40%;
+			/* Adjust the width as needed */
+			padding: 20px;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+		}
+
+
+		/* Form styles */
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		select,
+		textarea,
+		input[type="text"],
+		input[type="email"],
+		input[type="number"],
+		input[type="password"],
+		input[type="file"] {
+			width: calc(100% - 20px);
+			padding: 10px;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+			margin-bottom: 10px;
+		}
+
+		textarea {
+			resize: vertical;
+			/* Allow vertical resizing of textarea */
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.update1-btn,
+		.back-btn {
+			padding: 10px 20px;
+			background-color: #333;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			text-decoration: none;
+		}
+
+		.back-btn:hover {
+			background-color: #2BC406;
+		}
+		
+		.update1-btn:hover {
+			background-color: #2BC406;
+		}
+
+		.submit-btn {
+			padding: 10px 20px;
+			background-color: #333;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		.submit-btn:hover {
+			background-color: #2BC406;
+		}
+
+		.link-buttons {
+			text-align: center;
+			/* Center the buttons */
+		}
+
+		.form-group-courses {
+			display: inline-block;
+			/* Display form groups inline */
+			margin-right: 10px;
+			/* Adjust the margin between buttons */
+		}
+
+		.link-button {
+			padding: 8px 16px;
+			background-color: #333;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 5px;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		.link-button:hover {
+			background-color: #2BC406;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<a href="editProfile">
+			<h2>[[${user.name}]]</h2>
+		</a>
+		<a href="profile">Home</a>
+		<a href="courses">Courses</a>
+		<a href="contact">Messages</a>
+		<a href="report">Reports</a>
+	</div>
+
+	<!-- Navbar -->
+	<div class="navbar">
+		<div class="navbar-content">
+			<a href="/logout" class="logout-btn">Logout</a>
+		</div>
+	</div>
+
+	<div th:replace="${content}"></div>
+
+
+</body>
+
+</html>

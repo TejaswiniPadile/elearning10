@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseUser::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="content">
+			<div class="cards">
+				<div class="card" th:each="course : ${course}">
+					<h3>[[${course.courseName}]]</h3>
+					<p>[[${course.coursePrice}]]</p>
+					<form th:action="@{payment}" method="post">
+						<input type="hidden" name="id" th:value="${course.id}" />
+						<input type="submit" value="Enroll" class="view-btn">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

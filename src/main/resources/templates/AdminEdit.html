@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="signup-section">
+		<div class="signup_container">
+			<div class="right-side">
+				<h2>Fill Details And Submit</h2>
+				<th:block th:if="${session.msg}">
+					<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+					<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+				<form action="adminDataEdit" method="post">
+					<input type="hidden" id="id" name="id" th:value="${user.id}">
+					<div class="form-group">
+						<label for="name">Full Name:</label> <input type="text" id="name" name="name"
+							th:value="${user.name}" required pattern="[A-Za-z\s]{3,50}">
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone:</label> <input type="text" id="phone" name="phone"
+							th:value="${user.phone}" required pattern="[6-9]\d{9}">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email" id="email" name="email"
+							th:value="${user.email}" required readonly>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label> <input type="password" id="password" name="password"
+							placeholder="8 or greater than 8 Charaters (eg. A89@mkj0)" required
+							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$">
+					</div>
+					<div class="form-group">
+						<label for="password">Confirm Password:</label> <input type="password" id="conf_password"
+							name="conf_password" placeholder="Confirm Password" required
+							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Update" class="update1-btn">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

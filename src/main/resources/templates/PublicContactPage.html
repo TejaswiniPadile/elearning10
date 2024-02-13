@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section class="signup-section">
+		<div class="signup_container">
+			<div class="left-side">
+				<h2 style="color: red">Rules...</h2>
+				<p style="color: black">Full Name: Should contain 3 to 50 characters, only letters and spaces allowed.
+<br><br>Phone: Should be a valid phone number starting with 6-9 and having 10 digits.
+<br><br>Email: Should be a valid email address.
+<br><br>Message: Message of Content.</p>
+			</div>
+
+			<div class="right-side">
+				<h2>Fill Details And Submit</h2>
+				<th:block th:if="${session.msg}">
+					<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+					<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+				<form action="contactUs" method="post">
+					<div class="form-group">
+						<label for="name">Full Name:</label> <input type="text" id="name" name="name"
+							placeholder="Enter Full Name" required pattern="[A-Za-z\s]{3,50}">
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone:</label> <input type="text" id="phone" name="phone"
+							placeholder="Enter Phone Number" required pattern="[6-9]\d{9}">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email" id="email" name="email"
+							placeholder="Enter Email" required>
+					</div>
+					<div class="form-group">
+						<label for="details">Message:</label>
+						<textarea id="details" name="message" placeholder="Enter Your Message" rows="4"
+							pattern="[A-Za-z ]+" title="Only letters and spaces are allowed" required></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Submit">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

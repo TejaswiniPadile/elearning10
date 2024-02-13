@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseUser::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="content">
+			<div class="cards">
+				<div class="card" th:each="course : ${Course}">
+					<h3 th:text="${course.courseName}"></h3>
+					<p th:text="${course.coursePrice}"></p>
+					<form th:action="@{view}" method="post">
+						<input type="hidden" name="id" th:value="${course.id}" />
+						<input type="submit" value="View" class="view-btn">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

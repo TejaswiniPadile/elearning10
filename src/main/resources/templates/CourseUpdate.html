@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section class="signup-section">
+		<div class="signup_container">
+			<div class="right-side">
+				<h2>Add Course And Price</h2>
+				<th:block th:if="${session.msg}">
+					<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+					<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+				<form action="updateCourse" method="post">
+
+					<input type="hidden" id="id" name="id" th:value="${cr.id}">
+					<div class="form-group">
+						<label for="name">Course Name:</label>
+						<input type="text" id="name" name="courseName" th:value="${cr.courseName}" >
+					</div>
+					<div class="form-group">
+						<label for="price">Price:</label>
+						<input type="number" id="price" name="coursePrice" th:value="${cr.coursePrice}">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Submit" class="submit-btn">
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section class="signup-section">
+		<div class="signup_container">
+			<div class="right-side">
+				<h2>Add Course And Price</h2>
+				<th:block th:if="${session.msg}">
+					<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+					<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+				<form action="saveCourseMat" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="courseSelect">Select Course:</label>
+						<select id="courseSelect" name="course.id" required>
+							<option th:each="course : ${courseList}" th:value="${course.id}"
+								th:text="${course.courseName}"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="details">Course Details:</label>
+						<textarea id="details" name="courseDetails" placeholder="Enter Course Details" rows="4"
+							required></textarea>
+					</div>
+					
+					<div class="form-group">
+						<label for="video">Upload Video:</label>
+						<input type="file" id="video" name="videoFile" accept="video/*">
+					</div>
+
+					<div class="form-group">
+						<label for="pdf">Upload PDF:</label>
+						<input type="file" id="pdf" name="pdfFile" accept=".pdf">
+					</div>
+
+					<div class="form-group">
+						<input type="submit" value="Submit" class="submit-btn">
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

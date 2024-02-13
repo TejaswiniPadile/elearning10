@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section class="text-center">
+		<div class="content">
+			<div class="data-view">
+				<h2>Reports...</h2>
+				<!-- Table -->
+				<table>
+					<thead>
+						<tr>
+							<th>Content</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Students</td>
+							<td>
+								<div class="form-group" style="margin-top: 10px;">
+									<a href="reportStudent" class="link-button">View</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Orders</td>
+							<td>
+								<div class="form-group" style="margin-top: 10px;">
+									<a href="reportOrder" class="link-button">View</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Message</td>
+							<td>
+								<div class="form-group" style="margin-top: 10px;">
+									<a href="reportMessage" class="link-button">View</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

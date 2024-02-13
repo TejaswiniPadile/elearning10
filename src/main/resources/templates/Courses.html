@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="content">
+			<!-- Link Buttons -->
+			<div class="link-buttons">
+				<div class="form-group-courses">
+					<label for="details" style="padding-bottom: 10px;padding-top: 10px;">Add New Course</label>
+					<a href="addcourse" class="link-button">New</a>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="form-group-courses">
+					<label for="details" style="padding-bottom: 10px;padding-top: 10px;">Add Course Materials</label>
+					<a href="courseMaterial" class="link-button">New</a>
+				</div>
+			</div>
+			<!-- Cards -->
+			<div class="cards">
+				<div class="card" th:each="course : ${courseList}">
+					<h3>[[${course.courseName}]]</h3>
+					<p>[[${course.coursePrice}]]</p>
+					<form th:action="@{view}" method="post">
+						<input type="hidden" name="id" th:value="${course.id}" />
+						<input type="submit" value="View" class="view-btn">
+					</form>
+					<br>
+					<form th:action="@{deleteCourse}" method="post">
+						<input type="hidden" name="id" th:value="${course.id}" />
+						<input type="submit" value="Delete" class="delete-btn">
+					</form>
+					<br>
+					<form th:action="@{courseUpdate}" method="post">
+						<input type="hidden" name="id" th:value="${course.id}" />
+						<input type="submit" value="Update" class="update-btn">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

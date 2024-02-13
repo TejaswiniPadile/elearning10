@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+<body>
+	<section class="text-center">
+		<div class="content">
+			<div class="data-view">
+				<h2>Received Orders</h2>
+				<!-- Table -->
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Course Name</th>
+							<th>Date/Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Iterate over the list of users -->
+						<tr th:each="order : ${orderList}">
+							<td th:text="${order.user.name}"></td>
+							<td th:text="${order.user.phone}"></td>
+							<td th:text="${order.user.email}"></td>
+							<td th:text="${order.course.courseName}"></td>
+							<td th:text="${order.paymentDate}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

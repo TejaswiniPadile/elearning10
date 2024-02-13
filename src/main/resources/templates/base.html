@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/css/styleHome.css}">
+</head>
+
+<body>
+	<!-- start navbar -->
+	<header>
+		<nav class="navbar">
+			<div class="logo">
+				<h1 style="color: white">Your Logo</h1>
+			</div>
+			<ul class="nav-links">
+				<th:block th:if="${user==NULL}">
+					<li><a href="/">Home</a></li>
+					<li><a href="/courses">Courses</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
+					<li><a href="signin" class="login-btn">Login</a></li>
+				</th:block>
+				<th:block th:if="${user!=NULL}">
+					<li><a href="/logout" class="logout-btn">Logout</a></li>
+				</th:block>
+			</ul>
+		</nav>
+	</header>
+
+
+	<!-- End Navbar -->
+
+
+	<div th:replace="${content}"></div>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-contact">
+					<h3>Contact Us</h3>
+					<p>Email: contact@hackerrank.com</p>
+					<p>Phone: +1 123-456-7890</p>
+					<p>Address: 123 Hacker Street, CodeCity</p>
+				</div>
+				<div class="footer-location">
+					<h3>Our Location</h3>
+					<p>City: CodeCity</p>
+					<p>State: CodeState</p>
+					<p>Country: CodeCountry</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

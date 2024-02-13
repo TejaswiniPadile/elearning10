@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section class="text-center">
+		<div class="content">
+			<!-- Data View -->
+			<div class="data-view">
+				<h2>Users Data...</h2>
+				<!-- Table -->
+				<table>
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Phone</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Iterate over the list of users -->
+						<tr th:each="user : ${userList}">
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.phone}"></td>
+							<td th:text="${user.email}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

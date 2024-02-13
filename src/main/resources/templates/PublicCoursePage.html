@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="content">
+			<div class="cards">
+				<div class="card" th:each="course : ${course}">
+					<h3>[[${course.courseName}]]</h3>
+					<p>[[${course.coursePrice}]]</p>
+					<div class="form-group">
+						<a href="signin" class="button">Enroll</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

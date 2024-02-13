@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="baseAdmin::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section class="text-center">
+
+		<div class="content">
+			<!-- Cards -->
+			<div class="cards">
+				<div class="card">
+					<h3>Users</h3>
+					<p th:text="${users}"></p>
+				</div>
+				<div class="card">
+					<h3>Orders</h3>
+					<p th:text="${orders}"></p>
+				</div>
+				<div class="card">
+					<h3>Revenue(Rs.)</h3>
+					<p th:text="${revenue}"></p>
+				</div>
+			</div>
+
+			<!-- Data View -->
+			<div class="data-view">
+				<h2>Users Data...</h2>
+				<!-- Table -->
+				<table>
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Iterate over the list of users -->
+						<tr th:each="user : ${userList}">
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.phone}"></td>
+							<td th:text="${user.email}"></td>
+							<td>
+								<div class="action">
+								 <form th:action="@{delete}" method="post">
+                  <input type="hidden" name="id" th:value="${user.id}" />
+                  <input type="submit" value="Delete" class="delete-btn">
+								</form>
+							<!--	&nbsp;&nbsp;
+								<form th:action="@{update}" method="post">
+                  <input type="hidden" name="id" th:value="${user.id}" />
+                  <input type="submit" value="Update" class="update-btn">
+						-->		</form>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+    <div class="content">
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="team-section">
+            <h2 style="text-align: center;">Our Team</h2>
+            <div class="cards_about">
+                <div class="card_about" th:each="admin : ${admin}">
+                    <h3>[[${admin.name}]]</h3>
+                    <p>Founder</p>
+                    <!-- Additional details about John Doe -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>
